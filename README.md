@@ -136,7 +136,7 @@ Exemplo de Caso de Uso: Utilizar max-age em recursos estáticos ou respostas que
 
     
 #### Testando as Estratégias de Cache
-Para testar cada estratégia de cache, você pode utilizar ferramentas como cURL ou Postman.
+Para testar cada estratégia de cache, você pode utilizar ferramentas como CURL ou Postman.
 
 ### Exemplo de teste com CURL
 
