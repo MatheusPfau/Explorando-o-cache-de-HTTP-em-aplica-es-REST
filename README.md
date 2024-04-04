@@ -25,7 +25,7 @@ A estratégia no-store instrui os caches a não armazenarem nenhuma versão em c
 
 Exemplo de Caso de Uso: Implementar a estratégia no-store em endpoints que exibem dados sensíveis do usuário, como informações de login ou dados pessoais.
 
-#### Implementação:
+##### Implementação:
 ```python
 @app.route('/no-store')
 def no_store():
@@ -34,7 +34,7 @@ def no_store():
     return response
 ```
 
-#### Teste:
+##### Teste:
 
 ```bash
 curl -i http://localhost:5000/no-store
@@ -46,7 +46,7 @@ Permite que o cache reutilize a resposta somente após uma validação com o ser
 
 Exemplo de Caso de Uso: Utilizar no-cache em endpoints onde os dados podem ser alterados com frequência, mas que ainda se beneficiam do uso de cache para reduzir a sobrecarga no servidor.
 
-#### Implementação:
+##### Implementação:
 ```python
 @app.route('/no-cache')  
 def no_cache():
@@ -55,7 +55,7 @@ def no_cache():
     return response
 ```
 
-#### Teste:
+##### Teste:
 
 ```bash
 curl -i http://localhost:5000/no-cache
@@ -70,7 +70,7 @@ Limitações: Pode resultar em informações potencialmente sensíveis sendo arm
 
 Exemplo de Caso de Uso: Utilizar public em recursos estáticos, como imagens ou arquivos CSS, que não contêm informações confidenciais e podem ser compartilhados entre usuários.
 
-#### Implementação:
+##### Implementação:
 
 ```python
 @app.route('/public')
@@ -80,7 +80,7 @@ def public():
     return response
 ```
 
-#### Teste:
+##### Teste:
 
 ```bash
 curl -i http://localhost:5000/public
@@ -95,7 +95,7 @@ Limitações: Pode resultar em uma eficácia reduzida do cache para usuários qu
 
 Exemplo de Caso de Uso: Utilizar private em recursos personalizados do usuário, como configurações da conta ou dados específicos de sessão.
 
-#### Implementação:
+##### Implementação:
 
 ```python
 @app.route('/private')
@@ -104,7 +104,7 @@ def private():
     response.headers['Cache-Control'] = 'private'     
     return response
 ```
-#### Teste:
+##### Teste:
 
 ```bash
 curl -i http://localhost:5000/private
@@ -119,7 +119,7 @@ Limitações: Se o tempo de vida especificado for muito longo, os dados podem fi
 
 Exemplo de Caso de Uso: Utilizar max-age em recursos estáticos ou respostas que mudam com pouca frequência, como páginas de ajuda ou estilos padrão.
 
-#### Implementação:
+##### Implementação:
 
 ```python
 @app.route('/max-age')
@@ -129,7 +129,7 @@ def max_age():
     return response
 ```
 
-#### Teste:
+##### Teste:
 
 ```bash
 curl -i http://localhost:5000/max-age
