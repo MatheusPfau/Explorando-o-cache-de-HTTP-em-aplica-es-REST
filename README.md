@@ -138,7 +138,7 @@ curl -i http://localhost:5000/max-age
 ### 4. Rodando a aplicação
 
 ```python    
-if _name_ == '_main_':
+if __name__ == '__main__':
     app.run(debug=True)
 ```
 
