@@ -5,7 +5,7 @@ app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 def random_value():
-    return str(random.randint(1, 1000))
+    return str(random.randint(0, 1))
 
 @app.route('/no-store')
 def no_store():

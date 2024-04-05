@@ -23,7 +23,7 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 #### no-store
 A estratégia no-store instrui os caches a não armazenarem nenhuma versão em cache da resposta, exigindo que cada solicitação da resposta seja enviada ao servidor de origem. Garante que os dados sejam sempre obtidos a partir do servidor de origem em vez de caches intermediários, o que pode ser útil para informações sensíveis que não devem ser armazenadas em cache. Porém, pode aumentar a carga no servidor de origem devido à necessidade de processar todas as solicitações, principalmente em situações de tráfego intenso.
 
-Exemplo de Caso de Uso: Implementar a estratégia no-store em endpoints que exibem dados sensíveis do usuário, como informações de login ou dados pessoais.
+_Exemplo de Caso de Uso: Implementar a estratégia no-store em endpoints que exibem dados sensíveis do usuário, como informações de login ou dados pessoais._
 
 ##### Implementação:
 ```python
@@ -44,7 +44,7 @@ curl -i http://localhost:5000/no-store
 A estratégia no-cache indica que os caches não devem usar a resposta armazenada para a próxima solicitação sem validar com o servidor de origem.
 Permite que o cache reutilize a resposta somente após uma validação com o servidor de origem, garantindo dados mais atualizados. Pode resultar em um desempenho menor em comparação com outras estratégias, devido à necessidade de validar a resposta com o servidor de origem.
 
-Exemplo de Caso de Uso: Utilizar no-cache em endpoints onde os dados podem ser alterados com frequência, mas que ainda se beneficiam do uso de cache para reduzir a sobrecarga no servidor.
+_Exemplo de Caso de Uso: Utilizar no-cache em endpoints onde os dados podem ser alterados com frequência, mas que ainda se beneficiam do uso de cache para reduzir a sobrecarga no servidor._
 
 ##### Implementação:
 ```python
@@ -62,13 +62,9 @@ curl -i http://localhost:5000/no-cache
 ```
 
 #### public
-Descrição: A estratégia public permite que a resposta seja armazenada em cache tanto em caches públicos quanto privados.
+A estratégia public permite que a resposta seja armazenada em cache tanto em caches públicos quanto privados. Ideal para recursos que podem ser compartilhados entre diferentes usuários ou em caches intermediários, proporcionando um tempo de resposta mais rápido. Pode resultar em informações potencialmente sensíveis sendo armazenadas em caches públicos.
 
-Benefícios: Ideal para recursos que podem ser compartilhados entre diferentes usuários ou em caches intermediários, proporcionando um tempo de resposta mais rápido.
-
-Limitações: Pode resultar em informações potencialmente sensíveis sendo armazenadas em caches públicos.
-
-Exemplo de Caso de Uso: Utilizar public em recursos estáticos, como imagens ou arquivos CSS, que não contêm informações confidenciais e podem ser compartilhados entre usuários.
+_Exemplo de Caso de Uso: Utilizar public em recursos estáticos, como imagens ou arquivos CSS, que não contêm informações confidenciais e podem ser compartilhados entre usuários._
 
 ##### Implementação:
 
@@ -87,13 +83,9 @@ curl -i http://localhost:5000/public
 ```
     
 #### private
-Descrição: A estratégia private instrui os caches a armazenarem a resposta apenas em caches privados, geralmente associados a um único usuário.
+A estratégia private instrui os caches a armazenarem a resposta apenas em caches privados, geralmente associados a um único usuário. Benefícios: Adequado para dados privados ou personalizados que devem ser mantidos exclusivos para o usuário que fez a solicitação. Pode resultar em uma eficácia reduzida do cache para usuários que acessam os mesmos recursos devido à necessidade de revalidação constante.
 
-Benefícios: Adequado para dados privados ou personalizados que devem ser mantidos exclusivos para o usuário que fez a solicitação.
-
-Limitações: Pode resultar em uma eficácia reduzida do cache para usuários que acessam os mesmos recursos devido à necessidade de revalidação constante.
-
-Exemplo de Caso de Uso: Utilizar private em recursos personalizados do usuário, como configurações da conta ou dados específicos de sessão.
+_Exemplo de Caso de Uso: Utilizar private em recursos personalizados do usuário, como configurações da conta ou dados específicos de sessão._
 
 ##### Implementação:
 
@@ -111,13 +103,9 @@ curl -i http://localhost:5000/private
 ```
 
 #### Estratégia max-age
-Descrição: A estratégia max-age especifica por quanto tempo a resposta pode ser armazenada em cache antes de expirar, em segundos.
+A estratégia max-age especifica por quanto tempo a resposta pode ser armazenada em cache antes de expirar, em segundos. Permite controlar o tempo que a resposta pode ser armazenada em cache, otimizando a velocidade de carregamento para solicitações subsequentes. Se o tempo de vida especificado for muito longo, os dados podem ficar desatualizados, requerendo revalidação constante.
 
-Benefícios: Permite controlar o tempo que a resposta pode ser armazenada em cache, otimizando a velocidade de carregamento para solicitações subsequentes.
-
-Limitações: Se o tempo de vida especificado for muito longo, os dados podem ficar desatualizados, requerendo revalidação constante.
-
-Exemplo de Caso de Uso: Utilizar max-age em recursos estáticos ou respostas que mudam com pouca frequência, como páginas de ajuda ou estilos padrão.
+_Exemplo de Caso de Uso: Utilizar max-age em recursos estáticos ou respostas que mudam com pouca frequência, como páginas de ajuda ou estilos padrão._
 
 ##### Implementação:
 
